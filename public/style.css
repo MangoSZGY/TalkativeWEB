@@ -1,0 +1,57 @@
+:root{--bg:#f3f6fb;--panel:#ffffff;--accent:#2d8cff;--muted:#8892a6;--danger:#ff5c5c;--success:#4caf50}
+*{box-sizing:border-box;font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial}
+body{margin:0;background:var(--bg);height:100vh;display:flex;align-items:stretch}
+#app{display:flex;flex:1;min-height:100vh}
+/* Sidebar (Kontakt lista) */
+.sidebar{width:280px;background:var(--panel);padding:14px;border-right:1px solid #e6eef8;display:flex;flex-direction:column;gap:12px}
+.profile{display:flex;gap:10px;align-items:center}
+.avatar{background:#e6f0ff;color:var(--accent);width:48px;height:48px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px}
+.myinfo{font-size:14px}
+.myinfo #myName{font-weight:700}
+.myinfo .status{color:var(--success)}
+.search input{width:100%;padding:8px;border-radius:8px;border:1px solid #e2e8f0}
+.contacts{flex:1;overflow-y:auto}
+.contact{display:flex;align-items:center;gap:10px;padding:8px;border-radius:8px;cursor:pointer;transition:background 0.1s}
+.contact:hover, .contact.selected{background:#f6f9ff}
+.contact .c-avatar{width:40px;height:40px;border-radius:6px;background:#f0f4ff;display:flex;align-items:center;justify-content:center;font-weight:600}
+.contact .c-meta{flex:1}
+.contact .c-name{font-weight:600}
+.contact .c-status{font-size:12px;color:var(--muted)}
+.contact.online .c-status{color:var(--success)}
+
+/* Fő tartalom (Chat/Hívás) */
+.main{flex:1;display:flex;flex-direction:column}
+.call-header{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;background:linear-gradient(90deg,#fff,#fbfdff);border-bottom:1px solid #eef6ff}
+.targetName{font-weight:700;font-size:18px}
+.targetStatus{font-size:12px;color:var(--muted)}
+.call-controls button{margin-left:8px;padding:8px 12px;border-radius:8px;border:1px solid #dfeef9;background:#fff;cursor:pointer;font-weight:600;transition:background 0.1s}
+.call-controls button:hover:not(:disabled){background:#f9f9f9}
+.call-controls button:disabled{opacity:0.6;cursor:not-allowed}
+.call-controls .danger{background:var(--danger);border-color:#ff9e9e;color:#fff}
+.call-controls .danger:hover:not(:disabled){background:#e05252}
+
+/* Chat és Videó terület */
+.chat-area{display:flex;flex-direction:column;flex:1;padding:16px;gap:12px;position:relative}
+.video-container{position:absolute;inset:0;background:#1a1a1a;z-index:10;display:flex;flex-direction:column;gap:5px;padding:10px}
+.video-container.hidden{display:none}
+#remoteVideo{width:100%;height:calc(100% - 100px);background:#333}
+#localVideo{position:absolute;bottom:75px;right:25px;width:120px;height:90px;background:#555;border:2px solid #fff;z-index:11}
+video:not([srcObject]){display:none}
+
+.messages{flex:1;overflow-y:auto;padding:8px;border-radius:8px;background:linear-gradient(#ffffff,#fbfdff);border:1px solid #eef6ff;z-index:1;min-height:50px}
+.message{margin:6px 0;padding:8px;border-radius:8px;max-width:70%;font-size:14px}
+.message.me{background:#e6f0ff;margin-left:auto}
+.message.them{background:#f4f7fb;margin-right:auto}
+.composer{display:flex;gap:8px;z-index:1}
+.composer input{flex:1;padding:10px;border-radius:8px;border:1px solid #e3eefc}
+.composer button{padding:10px 14px;border-radius:8px;border:none;background:var(--accent);color:#fff;cursor:pointer}
+
+/* Hívás Overlay (Bejövő/Kimenő hívások jelzése) */
+.call-overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(10,12,20,0.85);z-index:1000}
+.call-overlay.hidden{display:none}
+.call-card{background:#fff;padding:30px;border-radius:12px;box-shadow:0 12px 40px rgba(10,20,40,0.3);text-align:center}
+.large-avatar{width:120px;height:120px;border-radius:50%;background:#f0f4ff;display:inline-flex;align-items:center;justify-content:center;font-size:36px;margin-bottom:20px;font-weight:700}
+#callState{font-size:20px;font-weight:600;margin-bottom:20px;color:#333}
+.call-actions button{margin:6px;padding:10px 16px;border-radius:20px;border:1px solid #e0e0e0;background:#f5f5f5;font-weight:600;cursor:pointer}
+.call-actions button.danger{background:var(--danger);border:none;color:#fff}
+.call-actions button.active{background:var(--success);color:#fff;border-color:var(--success)}

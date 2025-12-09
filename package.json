@@ -1,0 +1,13 @@
+{
+  "name": "talkative-skype",
+  "version": "1.0.0",
+  "description": "Simple Skype-like demo with audio-first calls and contact list (WebRTC)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "ws": "^8.13.0"
+  }
+}

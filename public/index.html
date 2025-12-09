@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Talkative — Skype-style Voice/Video Demo</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="app">
+    <aside class="sidebar">
+      <div class="profile">
+        <div class="avatar" id="myAvatar">TU</div>
+        <div class="myinfo">
+          <div id="myName" title="A hívásokhoz használt egyedi ID-d">Te</div>
+          <div class="status" id="myStatus">online</div>
+        </div>
+      </div>
+
+      <div class="search">
+        <input id="searchInput" placeholder="Keresés név/ID szerint...">
+      </div>
+
+      <div class="contacts" id="contactsList">
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="call-header">
+        <div id="targetInfo">
+          <div class="targetName" id="targetName">Válassz kontaktot a híváshoz</div>
+          <div class="targetStatus" id="targetStatus"></div>
+        </div>
+        <div class="call-controls">
+          <button id="callBtn" title="Audio Hívás (Kamera nélkül)">📞 Call</button>
+          <button id="videoCallBtn" title="Videó Hívás (Kamerával)">📹 Video</button>
+          <button id="hangupBtn" disabled class="danger">🔴 End</button>
+        </div>
+      </header>
+
+      <section class="chat-area">
+        <div id="videoContainer" class="video-container hidden">
+          <video id="localVideo" autoplay muted playsinline></video>
+          <video id="remoteVideo" autoplay playsinline></video>
+        </div>
+        
+        <div id="messages" class="messages"></div>
+        
+        <div class="composer">
+          <input id="messageInput" placeholder="Írj üzenetet..."/>
+          <button id="sendBtn">Küld</button>
+        </div>
+      </section>
+    </main>
+
+    <div id="callOverlay" class="call-overlay hidden">
+      <div class="call-card">
+        <div id="callLargeAvatar" class="large-avatar">??</div>
+        <div id="callState">Hívás előkészítése...</div>
+        <div class="call-actions">
+          <button id="toggleMic" title="Mikrofon némítása/feloldása">🔇 Mic</button>
+          <button id="toggleCam" title="Kamera be-/kikapcsolása">📹 Video</button>
+          <button id="endCall" class="danger">🔴 End Call</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="client.js"></script>
+</body>
+</html>
