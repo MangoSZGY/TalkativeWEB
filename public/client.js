@@ -183,12 +183,9 @@ async function createPeer(requestVideo, remoteId) {
   
  pc = new RTCPeerConnection({
     iceServers: [
-        // A STUN megmarad az első próbálkozáshoz
         { urls: 'stun:stun.l.google.com:19302' }, 
-        
-        // A TURN szerver adatai
         { 
-            urls: 'turn:SAJÁT_TURN_URI:PORT', // Cseréld ki a szolgáltatótól kapott címre
+            urls: 'turn:SAJÁT_TURN_URI:PORT', 
             username: 'SAJÁT_FELHASZNÁLÓNÉV', 
             credential: 'SAJÁT_JELSZÓ'      
         }
