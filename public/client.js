@@ -2,8 +2,12 @@
 
 const WS_URL = (location.protocol === 'https:' ? 'wss:' : 'ws:') + '//' + location.host;
 // A kapcsolat biztonságossá tétele: ha a publikus címed HTTPS, WSS-t kell használni.
-const protocol = window.location.protocol === 'https:' ? 'wss://' : 'ws://';
-const ws = new WebSocket(protocol + window.location.host);
+// A kapcsolat biztonságos URL-jének beállítása
+const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
+const host = window.location.host;
+
+// Hozd létre a WebSocket kapcsolatot a teljes, biztosított URL-lel
+const ws = new WebSocket(`${protocol}://${host}`);
 
 // Egyedi ID generálása és név beállítása
 const myId = 'user-' + Math.random().toString(36).slice(2,9);
