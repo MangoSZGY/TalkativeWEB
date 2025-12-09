@@ -1,7 +1,9 @@
 // client.js - Talkative: Skype-style Voice/Video Demo
 
 const WS_URL = (location.protocol === 'https:' ? 'wss:' : 'ws:') + '//' + location.host;
-const ws = new WebSocket(WS_URL);
+// A kapcsolat biztonságossá tétele: ha a publikus címed HTTPS, WSS-t kell használni.
+const protocol = window.location.protocol === 'https:' ? 'wss://' : 'ws://';
+const ws = new WebSocket(protocol + window.location.host);
 
 // Egyedi ID generálása és név beállítása
 const myId = 'user-' + Math.random().toString(36).slice(2,9);
