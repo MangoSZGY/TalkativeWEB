@@ -5,7 +5,9 @@ const ws = new WebSocket(WS_URL);
 
 // Egyedi ID generálása és név beállítása
 const myId = 'user-' + Math.random().toString(36).slice(2,9);
-const myName = 'Te (' + myId + ')';
+// Kérj be egy nevet a felhasználótól
+const chosenName = prompt("Kérlek, add meg a nevedet (ez lesz látható a többieknek):");
+const myName = chosenName || 'Anonim (' + myId + ')';
 
 let pc = null; 
 let localStream = null; 
@@ -178,8 +180,15 @@ async function createPeer(requestVideo, remoteId) {
   if (pc) endCall(); 
   
   pc = new RTCPeerConnection({
-      iceServers: [{ urls: 'stun:stun.l.google.com:19302' }]
-  });
+    iceServers: [
+        { urls: 'stun:stun.l.google.com:19302' }, // Megmarad a STUN
+        { 
+            urls: 'turn:SAJÁT_TURN_URI:PORT', // IDE JÖN a TURN címe
+            username: 'SAJÁT_FELHASZNÁLÓNÉV', // Ide jön a felhasználónév
+            credential: 'SAJÁT_JELSZÓ'      // Ide jön a jelszó
+        }
+    ]
+});
   
   const stream = await ensureLocalStream(requestVideo);
   if (stream) {
